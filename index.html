@@ -68,6 +68,14 @@ button {
     margin: auto;
 }
 
+.g-container__texts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    gap: 30px;
+}
+
 /*  */
 /*  */
 /*  */
@@ -112,6 +120,7 @@ button {
     padding: 14px 22px;
     cursor: pointer;
     width: max-content;
+    text-align: center;
     text-decoration: none;
     transition: .2s;
 }
@@ -143,7 +152,25 @@ button {
     border-bottom: 1px solid #E0E0E0;
 }
 
+.header__links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
 nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header--mobile {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.overflow {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -215,15 +242,19 @@ nav {
 
 .banner__img {
     position: absolute;
+    width: 100%;
 }
 
-.banner__grafismo {}
+.banner__grafismo {
+    width: 100%;
+}
 
 /*  */
 
 .adeus {
     padding: 100px 0;
 }
+
 
 .adeus__container {
     display: grid;
@@ -293,8 +324,6 @@ nav {
     object-fit: contain;
 }
 
-.colab__text {}
-
 /* PLANO */
 
 .plano {
@@ -315,7 +344,7 @@ nav {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
-    width: 800px;
+    max-width: 800px;
     margin: auto;
 }
 
@@ -453,6 +482,10 @@ nav {
     align-items: flex-start;
 }
 
+.duvida__mascote--mobile {
+    display: none;
+}
+
 .collapse {
     border-width: 0 0 1px 0;
     border-color: #E0E0E0;
@@ -493,14 +526,14 @@ nav {
 }
 
 .collase__expand {
-    opacity: 0;
+    opacidade: 0;
     height: 0;
 }
 
 .is_expand .collase__expand {
     padding-top: 12px;
     height: 100%;
-    opacity: 1;
+    opacidade: 1;
 }
 
 .is_expand .collapse__icon {
@@ -511,10 +544,6 @@ nav {
 
 .quem {
     padding: 100px 0;
-}
-
-.quem__container {
-
 }
 
 .quem__card {
@@ -588,6 +617,7 @@ nav {
     overflow: hidden;
     background: #E4EBFC;
     min-height: 200px;
+    width: 100%;
 }
 
 .pratica__container {
@@ -598,31 +628,358 @@ nav {
     margin: auto;
     margin-top: 100px;
 }
+
+/*  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.header__close {
+    display: none;
+}
+
+.hrd__collapse .hrd__collapse__slide--add {
+    animation: slide__add .5s forwards;
+}
+
+@keyframes slide__add {
+    from {
+        transform: translate(-300px);
+    }
+    
+    to {
+        transform: translate(0);
+    }
+}
+
+.hrd__collapse .hrd__collapse__slide--remove {
+    animation: slide__remove .5s forwards;
+}
+
+@keyframes slide__remove {
+    from {
+        transform: translate(0);
+    }
+    
+    to {
+        transform: translate(-300px);
+    }
+}
+
+.hrd__collapse .header--mobile {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.hrd__collapse .header__close {
+    position: absolute;
+    display: block;
+    right: 24px;
+    top: 20px;
+    background: none;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.hrd__collapse .header__logo {
+    padding: 0 20px;
+    margin-top: 20px;
+}
+
+.hrd__collapse nav {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    background: white;
+}
+
+.hrd__collapse .header__links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.hrd__collapse .header__links {
+    gap: 0;
+}
+
+.hrd__collapse nav a {
+    padding: 20px;
+    width: 100%;
+}
+
+.hrd__collapse nav a:hover {
+    background: #3767E1;
+    color: white;
+    width: 100%;
+}
+
+.hrd__collapse .header__menu {
+    display: none;
+}
+
+@media screen and (max-width: 1000px) {
+    .width {
+        width: calc(100% - 50px)
+    }
+
+    .banner__container, .adeus__container, .colab__container, .plano__container {
+        display: flex;
+        flex-direction: column;
+    }        
+
+    .header {
+        padding: 0 20px
+    }
+
+    /* HEADER */
+
+    .header__links {
+        display: none;
+    }
+
+  
+
+    .header.hrd__collapse {
+        padding: 0 20px;
+    }
+
+    .header__menu {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        width: 30px;
+        background: none;
+        padding: 0;
+        height: 30px;
+    }
+
+    .header__menu--item::before, .header__menu--item::after, .header__menu--item {
+        transform: rotate(0) translate(0, 0);
+        pointer-events: none;
+        position: absolute;
+        content: '';
+        background: gray;
+        width: 30px;
+        border-radius: 50px;
+        height: 4px;
+        transition: .2s;
+    }
+
+    .header__menu--item::before {
+        top: -10px;
+    }
+    
+    .header__menu--item::after {
+        top: 10px;
+    }
+
+    /*  */
+
+    .colab__cellphone {
+        width: 52%;
+        left: 29%;
+    }
+
+    .colab__grafismo {
+        width: 100%;
+    }
+
+    .pratica__container {
+        padding: 0;
+    }
+
+    .pratica__beneficio {
+        gap: 20px;
+    }
+
+}
+
+@media screen and (max-width: 650px) {
+
+    .H__grafismo {
+        font-size: 24px;
+    }
+
+    .pratica__beneficio, .duvida__container {
+        display: flex;
+        flex-direction: column;
+    }      
+    
+    .adeus__cards {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .H__grafismo:after {
+        top: -14px;
+        width: 40px;
+        height: 6px;
+    }
+
+    .pratica__beneficio {
+        gap: 40px;
+    }
+
+    .button__blue, .pratica__options, .pratica__beneficio span, .pratica__beneficio--text {
+        width: 100%;
+    }
+
+    .pratica__options {
+        padding: 20px;
+        font-size: 20px;
+    }
+    
+    .pratica__beneficio {
+        margin-bottom: 20px;
+    }
+
+    .pratica__text {
+        font-size: 16px;
+    }
+
+    .pratica .button__blue {
+        margin-top: 60px;
+    }
+
+    .colab__cellphone {
+        width: 80%;
+        left: 19%;
+    }
+
+    /*  */
+
+    .duvida {
+        height: 880px;
+    }
+
+    .duvida__column--1 {
+        height: initial;
+    }
+    
+    .duvida__mascote {
+        display: none;
+    }
+
+    .duvida--mobile {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .duvida__mascote--mobile {
+        display: flex;
+        align-items: center;
+        width: 120px;
+        margin-right: 20px;
+    }
+
+    /*  */
+
+    .plano__container {
+        gap: 30px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    
+    .quem__grafismo {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+    }
+}
+
+
+.animation--add {
+    animation: opacidadeChange .5s forwards;
+    transition: .5s;
+}
+
+@keyframes opacidadeChange {
+    from {
+        opacity: 0;
+    }
+    
+    to {
+        opacity: 1;
+    }
+}
+
+.animation--remove {
+    animation: opacidadeChange--remove .5s forwards;
+    transition: .5s;
+}
+
+@keyframes opacidadeChange--remove {
+    from {
+        opacity: 1;
+    }
+    
+    to {
+        opacity: 0;
+    }
+}
+
 </style>
 </head>
 <body>
-<header class="header">
-    <nav>
-        <img class="header__logo" src="./src/logo.svg" alt="">
-        <a class="header__link" href="#">Início</a>
-        <a class="header__link" href="#">Colaboradores</a>
-        <a class="header__link" href="#">Cartões</a>
-        <a class="header__link" href="#">Beneficios</a>
-        <a class="header__link" href="#">Despesas</a>
-    </nav>
+<header class="header" onclick="handleMenu(event)">
+    <div class="header--mobile" id="overflow">
+        <button class="header__close" id="close">✕</button>
+        <nav id="slide">
+            <img class="header__logo" src="./src/logo.svg" alt="">
+            <div class="header__links">
+                <a class="header__link" href="#">Início</a>
+                <a class="header__link" href="#">Colaboradores</a>
+                <a class="header__link" href="#">Cartões</a>
+                <a class="header__link" href="#">Beneficios</a>
+                <a class="header__link" href="#">Despesas</a>
+            </div>
+            <div class="header__menu" id="hamburger">
+                <div class="header__menu--item"></div>
+            </div>
+        </nav>
+    
+        <div class="header__btns">
+            <button class="header__button--gray">
+                <img src="./src/icons/help.svg" alt="Ajuda">
+                Ajuda
+            </button>
+            <div class="header__perfil"></div>
 
-    <div class="header__btns">
-        <button class="header__button--gray">
-            <img src="./src/icons/help.svg" alt="Ajuda">
-            Ajuda
-        </button>
-        <div class="header__perfil"></div>
+
+        </div>
     </div>
 </header>
 <main>
     <section class="banner">
         <div class="banner__container width">
-            <div>
+            <div class="g-container__texts">
                 <p class="H__grafismo">
                     Use Caju Despesas e <br>
                     desenrole a gestão de <br>
@@ -646,7 +1003,7 @@ nav {
 
     <section class="adeus">
         <div class="adeus__container width">
-            <div>
+            <div class="g-container__texts">
                 <p class="H__grafismo H__grafismo--blue">
                     Adeus reembolso, <br>
                     olá facilidade no bolso!
@@ -813,10 +1170,10 @@ nav {
             <br><br>
 
             <div class="pratica__beneficio">
-                <div>
+                <span>
                     <div class="pratica__options">Plano Na Faixa</div>
                     <div class="pratica__options">Plano Na Medida</div>
-                </div>
+                </span>
                 <div class="pratica__beneficio--text">
                     <p class="H__grafismo H__grafismo--black">01</p>
                     <p>Escolha o plano que melhor atende a sua empresa</p>
@@ -828,7 +1185,7 @@ nav {
                 </div>
                 <div class="pratica__beneficio--text">
                     <p class="H__grafismo H__grafismo--black">02</p>
-                    <p>Na plataforma Caju, acesse a opção Despesas, depois clique em <strong>Novo Adiantamento</strong> e preencha os dados necessários como colaboradores que vão receber, valores, data de início e fim e mais.</p>
+                    <p class="pratica__text">Na plataforma Caju, acesse a opção Despesas, depois clique em <strong>Novo Adiantamento</strong> e preencha os dados necessários como colaboradores que vão receber, valores, data de início e fim e mais.</p>
                 </div>
             </div>
 
@@ -837,7 +1194,7 @@ nav {
                 </div>
                 <div class="pratica__beneficio--text">
                     <p class="H__grafismo H__grafismo--black">03</p>
-                    <p>
+                    <p class="pratica__text">
                         Acompanhe a utilização do saldo no cartão físico ou virtual do colaborador em tempo real.
                     </p>
                 </div>
@@ -848,7 +1205,7 @@ nav {
                 </div>
                 <div class="pratica__beneficio--text">
                     <p class="H__grafismo H__grafismo--black">04</p>
-                    <p>
+                    <p class="pratica__text">
                         No final do período do saldo, você pode escolher se o valor restante se mantém na conta do colaborador ou volta para a empresa.
                     </p>
                 </div>
@@ -859,7 +1216,7 @@ nav {
                 </div>
                 <div class="pratica__beneficio--text">
                     <p class="H__grafismo H__grafismo--black">05</p>
-                    <p>
+                    <p class="pratica__text">
                         Confira o relatório diário dos extratos na tela inicial da plataforma, enquanto o colaborador acompanha diretamente no aplicativo Caju.
                     </p>
                 </div>
@@ -881,10 +1238,13 @@ nav {
                 <img class="duvida__mascote" src="./src/caju-mascote.svg" alt="">
             </div>
             <div class="duvida__column--2">
-                <div>
-                    <p class="H__grafismo">Ficou com alguma dúvida?</p>
-                    <br>
-                    <p>Dá uma olhadinha em algumas das dúvidas mais comuns</p>
+                <div class="duvida--mobile">  
+                    <img class="duvida__mascote--mobile" src="./src/caju-mascote.svg" alt="">
+                    <div>
+                        <p class="H__grafismo">Ficou com alguma dúvida?</p>
+                        <br>
+                        <p>Dá uma olhadinha em algumas das dúvidas mais comuns</p>
+                    </div>
                 </div>
 
                 <div class="collapse" id="collapse">
@@ -958,12 +1318,37 @@ nav {
             </div>
         </div>
     </section>
-
-
-
 </main>
-<footer></footer>
+
 <script>
+    
+    const handleMenu = (event) => {
+        const nav = document.querySelector('.header')
+        const overflow = nav.querySelector('#overflow')
+        const slide = nav.querySelector('#slide')
+        const closer = document.querySelector('.header__close')
+        const target = event.target.getAttribute('id') 
+        
+        if (target == 'hamburger') {
+            overflow.classList.add('animation--add')
+            nav.classList.add('hrd__collapse')
+            slide.classList.add('hrd__collapse__slide--add')
+        } else if (target == 'close' || target == 'overflow') {
+            overflow.classList.add('animation--remove')
+            slide.classList.add('hrd__collapse__slide--remove')
+            slide.classList.remove('hrd__collapse__slide--add')
+            overflow.classList.remove('animation--add')
+            
+            setTimeout(() => {
+                slide.classList.remove('hrd__collapse__slide--remove')
+                nav.classList.remove('hrd__collapse')
+                overflow.classList.remove('animation--remove')
+            }, 500);
+        }
+    }
+
+    /*  */
+
     const collapse = document.getElementById('collapse')
     const collapseItems = document.querySelectorAll('.collapse__item')
     
