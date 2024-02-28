@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Caju Despesas</title>
 <link rel="shortcut icon" href="./src/point.svg" type="image/x-icon">
-<link rel="stylesheet" href="style.css">
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
@@ -123,6 +121,7 @@ button {
     text-align: center;
     text-decoration: none;
     transition: .2s;
+    font-size: 16px;
 }
 
 .button__blue:hover {
@@ -133,6 +132,12 @@ button {
 .button__blue:focus {
     background: #07329e;
     transition: .2s;
+}
+
+.container__button {
+    display: flex;
+    justify-content: center;
+    width: 100%;   
 }
 
 /*  */
@@ -290,6 +295,10 @@ button {
     gap: 20px;
 }
 
+.plano__card--gap {
+    gap: 24px;
+}
+
 .plano__check--container {
     margin-top: 20px;
 }
@@ -335,10 +344,6 @@ button {
     background-image: url('./src/icons/no-check.svg');
 }
 
-.plano__selector--ctn {
-    position: relative;
-}
-
 .plano__seletor--label {
     position: absolute;
     pointer-events: none;
@@ -354,17 +359,6 @@ button {
     z-index: 1;
 }
 
-.plano__seletor {
-    border: 1px solid #999999;
-    border-radius: 8px;
-    height: 46px;
-    padding: 0 20px;
-    width: 100%;
-    cursor: pointer;
-    outline: none;
-    transition: .2s;
-}
-
 .plano__seletor:hover {
     border-style: solid;
     border-width: 1px;
@@ -376,6 +370,83 @@ button {
     font-weight: 600;
     width: 100%;
     font-size: 16px;
+}
+
+dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid #999999;
+    border-radius: 8px;
+    height: 46px;
+    padding: 0 20px;
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    transition: .2s;
+}
+
+.dropdown--placeholder {
+    content: '';
+    color: gray;
+    position: absolute;
+}
+
+.drop__person {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.drop__value {
+    text-wrap: nowrap;
+    margin-left: 10px;
+    width: 100%;
+    white-space: wrap;
+}
+
+.drop__holder {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    left: 0;
+    top: 46px;
+    background: white;
+    overflow: hidden;
+    width: 100%;
+    min-width: 200px;
+    border-radius: 6px;
+    padding: 12px 0;
+    z-index: 1;
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.2);
+}
+
+dropdown-option {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    min-height: 50px;
+    padding: 6px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+dropdown-option:hover {
+    background: #eef3ff;
+    transition: .2s;
+}
+
+.drop__collaborators {
+    display: flex;
+    align-items: center;
+}
+
+.drop__collaborators p {
+    width: 44px;
+    margin-right: 6px;
 }
 
 .bold {font-weight: 700;}
@@ -557,7 +628,89 @@ button {
 
 .pratica .button__blue {
     margin: auto;
-    margin-top: 100px;
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+
+
+/* POPUP */
+
+.popup {
+    position: fixed;
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.2);
+    z-index: 2;
+    transition: .6s;
+    backdrop-filter: blur(4px);
+}
+
+.popup--add {
+    visibility: initial;
+    opacity: 1;
+}
+
+.popup--remove {
+    animation: .5s popup_close;
+}
+
+@keyframes popup_close {
+    from {
+        opacity: 1;
+        backdrop-filter: blur(4px);
+    }
+    to {
+        opacity: 0;
+        backdrop-filter: blur(0);
+    }
+}
+
+.popup__title {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+.popup__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: white;
+    border-radius: 16px;
+    padding: 44px;
+    gap: 26px;
+    width: 520px;
+}
+
+.popup__close {
+    position: absolute;
+    right: 22px;
+    top: 18px;
+    font-size: 26px;
+    color: #767676;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.popup__close:hover {
+    color: black;
+    transition: .2s;
+}
+
+.popup__img {
+    width: 116px;
+    height: 44px;
+    margin: auto;
+    object-fit: contain;
 }
 
 /*  */
@@ -755,7 +908,6 @@ button {
     .duvida__mascote--mobile {
         width: 100px;
     }
-
 }
 
 </style>
@@ -764,6 +916,19 @@ button {
 <header class="header">
     <img class="header__logo" src="./src/logo.svg" alt="">
 </header>
+
+
+<!-- Popup -->
+
+<div class="popup" id="popup" onclick="popup(event)">
+    <div class="popup__container">
+        <div class="popup__close">✕</div>
+        <img class="popup__img" src="./src/caju-despesas.svg" alt="">
+        <p class="popup__title">Entraremos em contato com você</p>
+        <p>Recebemos seu interesse no Caju despesas no plano Na Medida, entraremos em contato com você em até 1 dia útil por e-mail para ativação.</p>
+        <button class="button__blue">Aguardar contato</button>
+    </div>
+</div>
 
 <main>
     <section class="banner">
@@ -776,10 +941,9 @@ button {
                     sua empresa!
                 </p>
                 <p>
-                    Acabe com a burocracia da prestação de contas e crie fluxos simplificados de adiantamentos para
-                    aprovação de gastos com combustível, alimentação, viagens e muito mais!
+                    Acabe com a burocracia da prestação de contas e disponibilize recursos de forma simples para seu time realizar gastos com combustível, alimentação, viagens e muito mais!
                 </p>
-                <button class="button__blue">Comece gratuitamente</button>
+                <button class="button__blue" onclick="popup()">Comece gratuitamente</button>
             </div>
             <div class="banner__colummn--1">
                 <img class="banner__grafismo" src="./src/grafismo-01.svg" alt="">
@@ -798,8 +962,7 @@ button {
                     olá facilidade no bolso!
                 </p>
                 <p>
-                    Caju Despesas é a solução ideal para fazer a gestão de gastos de forma centralizada, com
-                    adiantamento de recursos direto no cartão Caju para acabar de vez com a burocracia do reembolso.
+                    Caju Despesas é a solução ideal para fazer a gestão de gastos de forma centralizada, com disponibilização de recursos direto no cartão Caju para acabar de vez com a burocracia do reembolso.
                 </p>
             </div>
 
@@ -868,7 +1031,7 @@ button {
                     <p class="colab__text">Compra de materiais de construção e itens de departamento</p>
                 </div>
                 <br><br>
-                <button class="button__blue">Começar a usar agora</button>
+                <button class="button__blue" onclick="popup()">Começar a usar agora</button>
             </div>
         </div>
     </section>
@@ -879,7 +1042,7 @@ button {
         <div class="width">
             <p class="plano__title H__grafismo">Encontre o plano perfeito para a sua empresa</p>
             <div class="plano__container">
-                <div class="plano__card">
+                <div class="plano__card plano__card--gap">
                     <p class="plano__card--title H__grafismo">Na Faixa</p>
 
                     <div class="plano__check check">Carteiras separadas</div>
@@ -931,15 +1094,13 @@ button {
 
                     <p class="plano__warning"><img class="plano__warning--img" src="./src/icons/warning.svg" alt="">Plano avançado</p>
                     
-                    <div class="plano__selector--ctn">
-                        <label class="plano__seletor--label" for="plano__seletor">Indique o número de colaboradores</label>
-                        <input class="plano__seletor" name="" id="plano__seletor" placeholder="Digite um número" >
-                        </input>
-                    </div>
+                    <dropdown d-placehoder="Selecione" id="drop-1">
+                        <label class="plano__seletor--label">Indique o número de colaboradores</label>
+                    </dropdown>
 
                     <!--  -->
                     
-                    <button class="button__blue">Contratar na medida</button>
+                    <button class="button__blue" onclick="popup()">Contratar na medida</button>
                 </div>
             </div>
         </div>
@@ -964,8 +1125,7 @@ button {
             </div>
 
             <div class="pratica__beneficio">
-                <div class="pratica__img--container">
-                </div>
+                <div class="pratica__img--container"></div>
                 <div class="pratica__beneficio--text">
                     <p class="H__grafismo H__grafismo--black">02</p>
                     <p class="pratica__text">Na plataforma Caju, acesse a opção Despesas, depois clique em <strong>Novo Adiantamento</strong> e preencha os dados necessários como colaboradores que vão receber, valores, data de início e fim e mais.</p>
@@ -973,8 +1133,7 @@ button {
             </div>
 
             <div class="pratica__beneficio">
-                <div class="pratica__img--container">
-                </div>
+                <div class="pratica__img--container"></div>
                 <div class="pratica__beneficio--text">
                     <p class="H__grafismo H__grafismo--black">03</p>
                     <p class="pratica__text">
@@ -984,8 +1143,7 @@ button {
             </div>
 
             <div class="pratica__beneficio">
-                <div class="pratica__img--container">
-                </div>
+                <div class="pratica__img--container"></div>
                 <div class="pratica__beneficio--text">
                     <p class="H__grafismo H__grafismo--black">04</p>
                     <p class="pratica__text">
@@ -995,8 +1153,7 @@ button {
             </div>
 
             <div class="pratica__beneficio">
-                <div class="pratica__img--container">
-                </div>
+                <div class="pratica__img--container"></div>
                 <div class="pratica__beneficio--text">
                     <p class="H__grafismo H__grafismo--black">05</p>
                     <p class="pratica__text">
@@ -1004,15 +1161,45 @@ button {
                     </p>
                 </div>
             </div>
+        </div>
 
-            <div class="button__blue">
-                Começar a usar agora
-            </div>
-
+        <div class="container__button">
+            <button class="button__blue" onclick="popup()">Começar a usar agora</button>
         </div>
     </section>
 
+    <!-- QUEM -->
 
+    <section class="quem">
+        <div class="quem__container width">
+            <p class="quem__title H__grafismo">Quem já usou e aprovou Caju Despesas?</p>
+
+            <div class="plano__container">
+                <div class="quem__card">
+                    <img class="quem__grafismo" src="./src/grafismo-03.svg" alt="">
+                    <p>
+                        Queríamos um parceiro que os serviços funcionassem em todo o território nacional, e foi aí que chegamos na solução da Caju. Fomos atrás de inúmeros fornecedores e a única empresa que conseguia atender a nossa necessidade com custo zero e retorno do crédito na frequência que gostaríamos foi o Caju Despesas. A Caju contempla tudo o que precisamos, seja na retenção, para garantir que o cliente não saia da nossa base, seja para conquistar novos clientes, em campanhas de aquisição
+                    </p>
+
+                    <p class="quem__description">
+                        <strong>Pedro Lube</strong>, Analista de Produto Sênior da Localiza
+                    </p>
+
+                </div>
+                <div class="quem__card">
+                    <img class="quem__grafismo" src="./src/grafismo-03.svg" alt="">
+                    <p>
+                        Usamos o Caju Despesas para nossas viagens corporativas e foi uma grande praticidade para mim enquanto gestora. Eu consigo fazer pedidos em massa e de forma centralizada, e otimizou muito meu tempo, além de me trazer maior rastreabilidade. Pro colaborador tem o ganho de usabilidade porque agora ele tem tudo em cartão só, mas sem se preocupar que isso vá se misturar com o saldo pessoal de benefícios. A Caju é uma empresa muito parceira, e realmente sinto que olha para os clientes para desenvolver produtos que atendam as necessidades de pagamentos das empresas.
+                    </p>
+
+                    <p class="quem__description">
+                        <strong>Luiza Schaefer</strong>,
+                        Facilities na RD Station</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- DÚVIDAS -->
 
     <section class="duvida">
@@ -1024,7 +1211,7 @@ button {
                 <div class="duvida--mobile">  
                     <img class="duvida__mascote--mobile" src="./src/caju-mascote.svg" alt="">
                     <div>
-                        <p class="H__grafismo">Ficou com alguma dúvida?</p>
+                        <p class="H__grafismo">Por que Caju Despesas é aliado do seu financeiro?</p>
                         <br>
                         <p>Dá uma olhadinha em algumas das dúvidas mais comuns</p>
                     </div>
@@ -1069,41 +1256,93 @@ button {
             </div>
         </div>
     </section>
-
-    <!-- QUEM -->
-
-    <section class="quem">
-        <div class="quem__container width">
-            <p class="quem__title H__grafismo">Quem já usou e aprovou Caju Despesas?</p>
-
-            <div class="plano__container">
-                <div class="quem__card">
-                    <img class="quem__grafismo" src="./src/grafismo-03.svg" alt="">
-                    <p>
-                        Queríamos um parceiro que os serviços funcionassem em todo o território nacional, e foi aí que chegamos na solução da Caju. Fomos atrás de inúmeros fornecedores e a única empresa que conseguia atender a nossa necessidade com custo zero e retorno do crédito na frequência que gostaríamos foi o Caju Despesas. A Caju contempla tudo o que precisamos, seja na retenção, para garantir que o cliente não saia da nossa base, seja para conquistar novos clientes, em campanhas de aquisição
-                    </p>
-
-                    <p class="quem__description">
-                        <strong>Pedro Lube</strong>, Analista de Produto Sênior da Localiza
-                    </p>
-
-                </div>
-                <div class="quem__card">
-                    <img class="quem__grafismo" src="./src/grafismo-03.svg" alt="">
-                    <p>
-                        Usamos o Caju Despesas para nossas viagens corporativas e foi uma grande praticidade para mim enquanto gestora. Eu consigo fazer pedidos em massa e de forma centralizada, e otimizou muito meu tempo, além de me trazer maior rastreabilidade. Pro colaborador tem o ganho de usabilidade porque agora ele tem tudo em cartão só, mas sem se preocupar que isso vá se misturar com o saldo pessoal de benefícios. A Caju é uma empresa muito parceira, e realmente sinto que olha para os clientes para desenvolver produtos que atendam as necessidades de pagamentos das empresas.
-                    </p>
-
-                    <p class="quem__description">
-                        <strong>Luiza Schaefer</strong>,
-                        Facilities na RD Station</p>
-                </div>
-            </div>
-        </div>
-    </section>
 </main>
 
 <script>
+    
+/* Dropdown */
+const dropDown = document.querySelector('dropdown')
+const placehoder = document.createElement('div')
+let dropHandle = true
+
+const options = [ // Opções do dropdown
+    { 
+        id: 0,
+        collaborators: '0-10',
+        value: 'R$ 149,99'
+    },
+    { 
+        id: 1,
+        collaborators: '10-20',
+        value: 'R$ 279,99'
+    },
+    { 
+        id: 2,
+        collaborators: '20-30',
+        value: 'R$ 389,99'
+    },
+    { 
+        id: 3,
+        collaborators: '30-40',
+        value: 'R$ 479,99'
+    },
+    { 
+        id: 4,
+        collaborators: '40-50',
+        value: 'R$ 549,99'
+    },
+    { 
+        id: 5,
+        collaborators: '50+',
+        value: 'A partir de R$ 549,99'
+    },
+]
+
+const optionList = document.createElement('div')
+optionList.setAttribute('class', 'drop__holder')
+options.forEach(obj => {
+    optionList.innerHTML += `
+        <dropdown-option id_obj="${obj.id}">
+            <div class="drop__collaborators">
+                <img class="drop__person" src="./src/icons/person.svg">
+                <p>${obj.collaborators}</p>
+                
+            </div>
+           <div style="display: flex">
+                <p>Colaboradores</p>
+                <p class="drop__value">${obj.value}</p>
+           </div>
+        </dropdown-option>`
+});
+
+let outputValue = []
+
+dropDown.appendChild(optionList)
+placehoder.setAttribute('class', 'dropdown--placeholder')
+placehoder.innerHTML = `${document.querySelector('[d-placehoder]').getAttribute('d-placehoder')}`
+dropDown.appendChild(placehoder)
+
+document.querySelectorAll('dropdown-option').forEach(obj => {
+    obj.addEventListener('click', (event) => {
+        outputValue = []
+        outputValue = options.filter(obj => obj.id === Number(event.currentTarget.getAttribute('id_obj')))
+        placehoder.innerHTML = `${outputValue[0].collaborators} - ${outputValue[0].value}`
+        placehoder.classList.remove('dropdown--placeholder') // Remove a classe do placeholder
+        console.log(outputValue); // Valor selecionado pelo usuário
+    })
+})
+
+dropDown.addEventListener('click', () => {
+    const elDropDown = dropDown.querySelector('.drop__holder')
+    if (dropHandle) elDropDown.style.display = 'flex'
+    else elDropDown.style.display = 'none'
+    dropHandle = !dropHandle
+})
+
+
+
+/* Collapse */
+
 const collapse = document.getElementById('collapse')
 const collapseItems = document.querySelectorAll('.collapse__item')
 
@@ -1124,6 +1363,40 @@ const clickItem = (event) => {
 for (let i = 0; i < collapseItems.length; i++) {
     collapseItems[i].addEventListener('click', clickItem)
 }
+
+/*  Popup */
+
+let handle = true
+let blockClick = true
+
+function popup(event) {
+    if(blockClick) {
+        const elPopup = document.getElementById('popup')
+        if(handle) {
+            elPopup.classList.add('popup--add')
+            document.body.style.overflow = 'hidden'
+            document.body.style.paddingRight = '6px'
+        } else if(
+            event.target.classList[0] == 'popup__close' ||
+            event.target.classList[0] == 'popup' ||
+            event.target.classList[0] == 'button__blue' 
+        ) {
+            document.body.style.overflow = ''
+            document.body.style.paddingRight = ''
+            elPopup.classList.remove('popup--add')
+            elPopup.classList.add('popup--remove')
+            setTimeout(() => {
+                elPopup.classList.remove('popup--remove')
+            }, 300);
+        }
+        blockClick = false
+        setTimeout(() => {
+            handle = !handle
+            blockClick = true
+        }, 510);
+    }
+} 
+
 </script>
 </body>
 </html>
