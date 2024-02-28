@@ -801,7 +801,7 @@ dropdown-option:hover {
         font-size: 24px;
     }
 
-    .pratica__beneficio, .duvida__container {
+    .pratica__beneficio {
         display: flex;
         flex-direction: column;
     }      
@@ -851,7 +851,7 @@ dropdown-option:hover {
         padding-bottom: 20px;
     }
 
-    /*  */
+    /* Dúvida */
 
     .duvida {
         height: 880px;
@@ -870,6 +870,11 @@ dropdown-option:hover {
         align-items: center;
         gap: 20px;
     }
+
+    .duvida__container {
+        display: flex;
+        flex-direction: column;
+    }  
     
     .duvida__mascote--mobile {
         display: flex;
@@ -1164,6 +1169,40 @@ dropdown-option:hover {
         </div>
     </section>
 
+    <!-- QUEM -->
+
+    <section class="quem">
+        <div class="quem__container width">
+            <p class="quem__title H__grafismo">Quem já usou e aprovou Caju Despesas?</p>
+
+            <div class="plano__container">
+                <div class="quem__card">
+                    <img class="quem__logo" src="./src/localiza.png" alt="">
+                    <img class="quem__grafismo" src="./src/grafismo-03.svg" alt="">
+                    <p>
+                        Queríamos um parceiro que os serviços funcionassem em todo o território nacional, e foi aí que chegamos na solução da Caju. Fomos atrás de inúmeros fornecedores e a única empresa que conseguia atender a nossa necessidade com custo zero e retorno do crédito na frequência que gostaríamos foi o Caju Despesas. A Caju contempla tudo o que precisamos, seja na retenção, para garantir que o cliente não saia da nossa base, seja para conquistar novos clientes, em campanhas de aquisição
+                    </p>
+
+                    <p class="quem__description">
+                        <strong>Pedro Lube</strong>, Analista de Produto Sênior da Localiza
+                    </p>
+
+                </div>
+                <div class="quem__card">
+                    <img class="quem__logo" src="./src/station.png" alt="">
+                    <img class="quem__grafismo" src="./src/grafismo-03.svg" alt="">
+                    <p>
+                        Usamos o Caju Despesas para nossas viagens corporativas e foi uma grande praticidade para mim enquanto gestora. Eu consigo fazer pedidos em massa e de forma centralizada, e otimizou muito meu tempo, além de me trazer maior rastreabilidade. Pro colaborador tem o ganho de usabilidade porque agora ele tem tudo em cartão só, mas sem se preocupar que isso vá se misturar com o saldo pessoal de benefícios. A Caju é uma empresa muito parceira, e realmente sinto que olha para os clientes para desenvolver produtos que atendam as necessidades de pagamentos das empresas.
+                    </p>
+
+                    <p class="quem__description">
+                        <strong>Luiza Schaefer</strong>,
+                        Facilities na RD Station</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- DÚVIDAS -->
 
     <section class="duvida">
@@ -1216,40 +1255,6 @@ dropdown-option:hover {
                             </p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- QUEM -->
-
-    <section class="quem">
-        <div class="quem__container width">
-            <p class="quem__title H__grafismo">Quem já usou e aprovou Caju Despesas?</p>
-
-            <div class="plano__container">
-                <div class="quem__card">
-                    <img class="quem__logo" src="./src/localiza.png" alt="">
-                    <img class="quem__grafismo" src="./src/grafismo-03.svg" alt="">
-                    <p>
-                        Queríamos um parceiro que os serviços funcionassem em todo o território nacional, e foi aí que chegamos na solução da Caju. Fomos atrás de inúmeros fornecedores e a única empresa que conseguia atender a nossa necessidade com custo zero e retorno do crédito na frequência que gostaríamos foi o Caju Despesas. A Caju contempla tudo o que precisamos, seja na retenção, para garantir que o cliente não saia da nossa base, seja para conquistar novos clientes, em campanhas de aquisição
-                    </p>
-
-                    <p class="quem__description">
-                        <strong>Pedro Lube</strong>, Analista de Produto Sênior da Localiza
-                    </p>
-
-                </div>
-                <div class="quem__card">
-                    <img class="quem__logo" src="./src/station.png" alt="">
-                    <img class="quem__grafismo" src="./src/grafismo-03.svg" alt="">
-                    <p>
-                        Usamos o Caju Despesas para nossas viagens corporativas e foi uma grande praticidade para mim enquanto gestora. Eu consigo fazer pedidos em massa e de forma centralizada, e otimizou muito meu tempo, além de me trazer maior rastreabilidade. Pro colaborador tem o ganho de usabilidade porque agora ele tem tudo em cartão só, mas sem se preocupar que isso vá se misturar com o saldo pessoal de benefícios. A Caju é uma empresa muito parceira, e realmente sinto que olha para os clientes para desenvolver produtos que atendam as necessidades de pagamentos das empresas.
-                    </p>
-
-                    <p class="quem__description">
-                        <strong>Luiza Schaefer</strong>,
-                        Facilities na RD Station</p>
                 </div>
             </div>
         </div>
@@ -1340,6 +1345,8 @@ dropDown.addEventListener('click', () => {
 
 
 
+
+
 /* Collapse */
 
 const collapse = document.getElementById('collapse')
@@ -1362,6 +1369,10 @@ const clickItem = (event) => {
 for (let i = 0; i < collapseItems.length; i++) {
     collapseItems[i].addEventListener('click', clickItem)
 }
+
+
+
+
 
 /*  Popup */
 
