@@ -446,12 +446,11 @@ dropdown-option:hover {
 
 .bold {font-weight: 700;}
 
-   
 /* DÚVIDA */
 
 .duvida {
     padding: 100px 0;
-    height: 700px;
+    height: 760px;
 }
 
 .duvida__container {
@@ -763,8 +762,10 @@ dropdown-option:hover {
     }
 
     .colab__cellphone {
-        width: 52%;
-        left: 29%;
+        position: relative;
+        left: initial;
+        width: 100%;
+        max-width: 400px;
     }
 
     .pratica__container {
@@ -783,6 +784,15 @@ dropdown-option:hover {
         padding-top: 0;
     }
 
+    .duvida {
+        height: max-content;
+    }
+
+    .plano__container {
+        max-width: 100%;
+        gap: 30px;
+    }
+    
 }
 
 @media screen and (max-width: 650px) {
@@ -842,20 +852,11 @@ dropdown-option:hover {
         margin-top: 60px;
     }
 
-    .colab__cellphone {
-        width: 70%;
-        left: 19%;
-    }
-
     .pratica .H__grafismo {
         padding-bottom: 20px;
     }
 
     /* Dúvida */
-
-    .duvida {
-        height: 880px;
-    }
 
     .duvida__column--1 {
         height: initial;
@@ -884,17 +885,21 @@ dropdown-option:hover {
     }
 
     /*  */
-
-    .plano__container {
-        gap: 30px;
+    .colab__column--2 .H__grafismo {
+        margin-bottom: 20px;
     }
+
+ 
+
+    .quem {
+        padding: 100px 0 0 0;
+    }
+    
 }
 
 @media screen and (max-width: 500px) {
     
-    .duvida {
-        height: max-content;
-    }
+ 
 
     .quem__grafismo {
         width: 40px;
@@ -1000,7 +1005,7 @@ dropdown-option:hover {
                 <img class="colab__cellphone" src="./src/cellphone.png" alt="">
             </div>
 
-            <div class="calab__column--2">
+            <div class="colab__column--2">
                 <p class="H__grafismo H__grafismo--blue">Seus colaboradores podem <br> usar o adiantamento em:</p>
                 <br><br>
                 <div class="colab__list">
@@ -1162,11 +1167,11 @@ dropdown-option:hover {
                     </p>
                 </div>
             </div>
+            <div class="container__button">
+                <button class="button__blue" onclick="popup()">Começar a usar agora</button>
+            </div>
         </div>
 
-        <div class="container__button">
-            <button class="button__blue" onclick="popup()">Começar a usar agora</button>
-        </div>
     </section>
 
     <!-- QUEM -->
